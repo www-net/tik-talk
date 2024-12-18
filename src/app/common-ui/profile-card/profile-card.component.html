@@ -1,9 +1,10 @@
 @if (profile) {
   <div class="profile-card">
     <div class="avatar-name">
-      <img class="profile-card__avatar"
-           src="/assets/images/avatar.png"
-           [alt]="profile.lastName">
+      <img
+        class="profile-card__avatar"
+        [src]="profile.avatarUrl | imgUrl"
+        [alt]="profile.lastName">
 
       <div class="profile-card__name">
         <strong class="h6">{{ profile.firstName }} {{ profile.lastName }}</strong>
@@ -14,7 +15,7 @@
     <div class="profile-card__description">{{ profile.description }}</div>
 
     <div class="profile-card__tags">
-      @for (skill of profile.stack; track profile.id) {
+      @for (skill of profile.stack; track skill) {
         <div class="skill-tag">{{ skill }}</div>
       }
     </div>
