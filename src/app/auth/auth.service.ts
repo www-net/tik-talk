@@ -16,10 +16,14 @@ export class AuthService {
   refreshToken: string | null = null
 
   get isAuth() {
+    if (!this.token) {
+      this.token = this.cookieService.get(`token`)
+    }
+
     return !!this.token
   }
 
-  login(payload: {username: string, password: string}) {
+  login(payload: { username: string, password: string }) {
     const fd = new FormData()
 
     fd.append('username', payload.username)
@@ -28,11 +32,15 @@ export class AuthService {
     return this.http.post<TokenResponse>(
       `${this.baseApiUrl}token`,
       fd,
-      ).pipe(
-        tap(val => {
-          this.token = val.access_token
-          this.refreshToken = val.refresh_token
-        })
+    ).pipe(
+      tap(val => {
+        this.token = val.access_token
+        this.refreshToken = val.refresh_token
+
+        this.cookieService.set(`token`, this.token)
+        this.cookieService.set(`refreshToken`, this.refreshToken)
+
+      })
     )
   }
 }
