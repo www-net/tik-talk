@@ -33,7 +33,7 @@ const refreshAndProceed = (
   req: HttpRequest<any>,
   next: HttpHandlerFn
 ) => {
-  if (isRefreshing) {
+  if (!isRefreshing) {
     isRefreshing = true
   return authService.refreshAuthToken()
     .pipe(
