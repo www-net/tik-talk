@@ -18,7 +18,7 @@
 
 @for (profile of subscribers$ | async; track profile.id) {
   <app-subscriber-card
-    [profile] = profile
+    [profile]=profile
   ></app-subscriber-card>
 }
 
@@ -29,3 +29,32 @@
   >Все подписчики</a>
   <svg icon="arrow" class="to-subscribers-icon"></svg>
 </div>
+
+<footer class="sidebar-footer">
+  @if (me(); as me) {
+    @if (me.avatarUrl) {
+      <img class="footer-img" [src]="me.avatarUrl | imgUrl" alt="user">
+    } @else {
+      <img class="footer-img" src="/assets/images/avatar-placeholder.svg" alt="user">
+    }
+
+    <div class="medium-text username-text">{{ me.username }}</div>
+
+    <a [routerLink]="['/settings']" class="settings-btn">
+      <svg icon="settings"></svg>
+    </a>
+
+  }
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+

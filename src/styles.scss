@@ -18,6 +18,8 @@
 }
 
 body {
+  height: 100dvh;
+
   font-family: 'JetBrains Mono', sans-serif;
   color: var(--light-color);
 
@@ -41,7 +43,7 @@ body {
 }
 
 .btn {
-  width: 100%;
+  width: min-content;
   padding: 10px 20px;
 
   font-weight: 700;

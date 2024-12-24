@@ -1,6 +1,9 @@
 :host {
+  position: relative;
+
   display: block;
   padding: 20px 12px;
+
   background: var(--dark-color);
 }
 
@@ -35,7 +38,7 @@
     color: var(--primary-color);
 
     svg {
-    color: var(--primary-color);
+      color: var(--primary-color);
     }
   }
 }
@@ -59,4 +62,39 @@
 .to-subscribers-icon {
   width: 18px;
   height: 18px;
+}
+
+.sidebar-footer {
+  position: absolute;
+  bottom: 20px;
+
+  display: grid;
+  grid-template-columns: 32px 1fr 16px;
+  grid-gap: 12px;
+  align-items: center;
+  width: calc(100% - 20px);
+  padding: 4px 16px;
+
+  background: var(--dark-hover-color);
+  border-radius: 2px;
+
+  .footer-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+  }
+
+  .username-text {
+    font-weight: 700;
+    color: var(--primary-color);
+  }
+}
+
+.settings-btn {
+  svg {
+    width: 13px;
+    height: 13px;
+
+    color: var(--primary-color);
+  }
 }

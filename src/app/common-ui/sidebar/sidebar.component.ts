@@ -1,12 +1,12 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, WritableSignal} from '@angular/core';
 import {SvgIconComponent} from '../svg-icon/svg-icon.component';
 import {AsyncPipe, JsonPipe, NgForOf} from '@angular/common';
 import {SubscriberCardComponent} from './subscriber-card/subscriber-card.component';
 import {RouterLink} from '@angular/router';
 import {ProfileService} from '../../data/services/profile.service';
-import {Observable} from 'rxjs';
+import {firstValueFrom, Observable} from 'rxjs';
 import {Profile} from '../../data/interfaces/profile.interface';
-import {Pageble} from '../../data/interfaces/pageble.interface';
+import {ImgUrlPipe} from '../../helpers/pipes/img-url.pipe';
 
 @Component({
   selector: 'app-sidebar',
@@ -17,6 +17,7 @@ import {Pageble} from '../../data/interfaces/pageble.interface';
     RouterLink,
     AsyncPipe,
     JsonPipe,
+    ImgUrlPipe,
   ],
   standalone: true,
   templateUrl: './sidebar.component.html',
@@ -24,10 +25,9 @@ import {Pageble} from '../../data/interfaces/pageble.interface';
 })
 export class SidebarComponent {
   profileService:ProfileService = inject(ProfileService);
-
   subscribers$: Observable<Profile[]> = this.profileService.getSubscribersShortList()
 
-  // me = this.profileService.me
+  me: WritableSignal<Profile | null> = this.profileService.me
 
   menuItems = [
     {
@@ -46,4 +46,8 @@ export class SidebarComponent {
       link: 'search'
     },
   ]
+
+  ngOnInit() {
+    firstValueFrom(this.profileService.getMe())
+  }
 }
