@@ -52,6 +52,9 @@
   display: flex;
   gap: 10px;
   align-items: center;
+
+  color: var(--primary-color);
+
 }
 
 .to-subscribers-link {
@@ -60,8 +63,8 @@
 }
 
 .to-subscribers-icon {
-  width: 18px;
-  height: 18px;
+  width: 11px;
+  height: 16px;
 }
 
 .sidebar-footer {

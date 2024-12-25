@@ -28,6 +28,10 @@ export class ProfileService {
       )
   }
 
+  getAccaunt(id: string) {
+    return this.http.get<Profile>(`${this.baseApiUrl}account/${id}`)
+  }
+
   getSubscribersShortList() {
     return this.http.get<Pageble<Profile>>(`${this.baseApiUrl}account/subscribers/`)
       .pipe(
