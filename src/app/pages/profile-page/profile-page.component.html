@@ -11,4 +11,38 @@
     </a>
   </header>
 
+  <main class="profile-page__body">
+    <app-post-feed></app-post-feed>
+
+    <div>
+      <h3 class="h6 mb16">Подрисчики</h3>
+
+      <div class="subscribers-wrapper mb32">
+        <ul class="subscribers-list">
+          @for (subscriber of subscribers$ | async; track subscriber.id) {
+            <li>
+              <a class="subscriber-links" [routerLink]="['/profile', subscriber.id]">
+                <img class="subscriber-avatar" [src]="subscriber.avatarUrl | imgUrl" alt="subscriber avatar">
+              </a>
+            </li>
+          }
+        </ul>
+
+        <a class="to-subscriber-search" [routerLink]="['/search']"></a>
+      </div>
+
+      <h3 class="h6 mb16">Навыки</h3>
+      <ul class="skills-list mb32">
+        @for (skill of ['хтмл', 'сиэсэс', 'js', 'угловой']; track skill) {
+          <li class="skill-tag">{{ skill }}</li>
+        }
+      </ul>
+
+      <h3 class="h6 mb16">О себе</h3>
+      <p class="medium-text"> {{ profile.description }} </p>
+
+    </div>
+
+  </main>
 }
+
