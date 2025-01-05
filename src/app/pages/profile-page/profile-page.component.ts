@@ -38,10 +38,10 @@ export class ProfilePageComponent {
 
   profile$ = this.route.params
     .pipe(
-      switchMap( ({id}) => {
+      switchMap( ({id} ) => {
         if (id === 'me') return this.me$
 
-        return this.profileService.getAccaunt(id)
+        return this.profileService.getAccount(id)
       })
     )
 

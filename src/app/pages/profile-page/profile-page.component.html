@@ -33,7 +33,7 @@
 
       <h3 class="h6 mb16">Навыки</h3>
       <ul class="skills-list mb32">
-        @for (skill of ['хтмл', 'сиэсэс', 'js', 'угловой']; track skill) {
+        @for (skill of profile.stack; track skill) {
           <li class="skill-tag">{{ skill }}</li>
         }
       </ul>

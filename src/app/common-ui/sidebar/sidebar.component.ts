@@ -33,7 +33,7 @@ export class SidebarComponent {
     {
       label: 'Moя страница',
       icon: 'home',
-      link: ''
+      link: 'profile/me'
     },
     {
       label: 'Чаты',
