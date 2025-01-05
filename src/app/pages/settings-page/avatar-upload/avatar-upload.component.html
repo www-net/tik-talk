@@ -1,6 +1,12 @@
 <img class="avatar" [src]="preview()" alt="avatar">
 
-<div class="dropzone" tabindex="0" (keyup.enter)="fileDrop.click()">
+<div
+  dnd
+  class="dropzone"
+  tabindex="0"
+  (keyup.enter)="fileDrop.click()"
+  (fileDropped)="onFileDropped($event)"
+>
 
   <div class="dropzone-content">
     <svg icon="upload"></svg>
