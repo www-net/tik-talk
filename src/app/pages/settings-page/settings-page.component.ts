@@ -1,4 +1,4 @@
-import {Component, effect, inject, ViewChild} from '@angular/core';
+import {Component, effect, inject, signal, ViewChild} from '@angular/core';
 import {ProfileHeaderComponent} from '../../common-ui/profile-header/profile-header.component';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ProfileService} from '../../data/services/profile.service';
@@ -35,7 +35,7 @@ export class SettingsPageComponent {
       //@ts-ignore
       this.form.patchValue({
         ...this.profileService.me(),
-      //@ts-ignore
+        //@ts-ignore
         stack: this.mergeStack(this.profileService.me()?.stack)
       })
     });
@@ -58,7 +58,7 @@ export class SettingsPageComponent {
     }));
   }
 
-  splitStack(stack: string | null | string[] | undefined ): string[] {
+  splitStack(stack: string | null | string[] | undefined): string[] {
     if (!stack) return []
     if (Array.isArray(stack)) return stack
 

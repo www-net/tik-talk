@@ -2,7 +2,7 @@ import {Component, inject, WritableSignal} from '@angular/core';
 import {SvgIconComponent} from '../svg-icon/svg-icon.component';
 import {AsyncPipe, JsonPipe, NgForOf} from '@angular/common';
 import {SubscriberCardComponent} from './subscriber-card/subscriber-card.component';
-import {RouterLink} from '@angular/router';
+import {RouterLink, RouterLinkActive} from '@angular/router';
 import {ProfileService} from '../../data/services/profile.service';
 import {firstValueFrom, Observable} from 'rxjs';
 import {Profile} from '../../data/interfaces/profile.interface';
@@ -18,6 +18,7 @@ import {ImgUrlPipe} from '../../helpers/pipes/img-url.pipe';
     AsyncPipe,
     JsonPipe,
     ImgUrlPipe,
+    RouterLinkActive,
   ],
   standalone: true,
   templateUrl: './sidebar.component.html',
