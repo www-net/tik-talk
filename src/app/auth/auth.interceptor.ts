@@ -34,16 +34,16 @@ const refreshAndProceed = (
 ) => {
   if (!isRefreshing$.value) {
     isRefreshing$.next(true)
-  return authService.refreshAuthToken()
-    .pipe(
-      switchMap((res) => {
-        isRefreshing$.next(false)
-        return next(addToken(req, res.access_token))
-          .pipe(
-            tap(() => isRefreshing$.next(false))
-          )
-      })
-    )
+    return authService.refreshAuthToken()
+      .pipe(
+        switchMap((res) => {
+          isRefreshing$.next(false)
+          return next(addToken(req, res.access_token))
+            .pipe(
+              tap(() => isRefreshing$.next(false))
+            )
+        })
+      )
   }
 
   if (req.url.includes('refresh')) return next(addToken(req, authService.token!))
