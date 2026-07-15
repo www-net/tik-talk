@@ -1,7 +1,4 @@
-<img
-  src="/assets/svg/logo-small.svg"
-  alt="logo"
-  class="ml16 mb20">
+<img src="/assets/svg/logo-small.svg" alt="logo" class="ml16 mb20" />
 
 <nav>
   <ul class="main-menu-list">
@@ -21,25 +18,26 @@
 <p class="medium-text mb20">Подписчики</p>
 
 @for (profile of subscribers$ | async; track profile.id) {
-  <app-subscriber-card
-    [profile]=profile
-  ></app-subscriber-card>
+  <app-subscriber-card [profile]="profile"></app-subscriber-card>
 }
 
 <div class="mt20 to-subscriber">
-  <a
-    [routerLink]="['/subscribers']"
-    class="to-subscribers-link medium-text"
-  >Все подписчики</a>
+  <a [routerLink]="['/subscribers']" class="to-subscribers-link medium-text">
+    Все подписчики
+  </a>
   <svg icon="arrow" class="to-subscribers-icon"></svg>
 </div>
 
 <footer class="sidebar-footer">
   @if (me(); as me) {
     @if (me.avatarUrl) {
-      <img class="footer-img" [src]="me.avatarUrl | imgUrl" alt="user">
+      <img class="footer-img" [src]="me.avatarUrl | imgUrl" alt="user" />
     } @else {
-      <img class="footer-img" src="/assets/images/avatar-placeholder.svg" alt="user">
+      <img
+        class="footer-img"
+        src="/assets/images/avatar-placeholder.svg"
+        alt="user"
+      />
     }
 
     <div class="medium-text username-text">{{ me.username }}</div>
@@ -47,18 +45,5 @@
     <a [routerLink]="['/settings']" class="settings-btn">
       <svg icon="settings"></svg>
     </a>
-
   }
 </footer>
-
-
-
-
-
-
-
-
-
-
-
-

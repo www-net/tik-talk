@@ -1,11 +1,11 @@
-@import 'fonts';
-@import 'margins';
+@import "fonts";
+@import "margins";
 
 :root {
   --dark-color: #000000;
-  --light-color: #FFFFFF;
-  --primary-color: #AE7AFF;
-  --gray-color: #5F646D;
+  --light-color: #ffffff;
+  --primary-color: #ae7aff;
+  --gray-color: #5f646d;
   --dark-hover-color: #161616;
   --light-transparen-color: rgba(255, 255, 255, 0.75);
 }
@@ -21,7 +21,7 @@
 body {
   height: 100dvh;
 
-  font-family: 'JetBrains Mono', sans-serif;
+  font-family: "JetBrains Mono", sans-serif;
   color: var(--light-color);
 
   background-color: var(--dark-color);
@@ -86,7 +86,7 @@ body {
 }
 
 .medium-text {
-  font-family: 'JetBrains Mono', sans-serif;
+  font-family: "JetBrains Mono", sans-serif;
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;
@@ -112,7 +112,7 @@ body {
   margin-top: 8px;
   padding: 12px 20px;
 
-  font-family: 'JetBrains Mono', sans-serif;
+  font-family: "JetBrains Mono", sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 21px;
@@ -158,16 +158,3 @@ body {
   height: 84px;
   resize: none;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
