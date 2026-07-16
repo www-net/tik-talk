@@ -1,1 +1,8 @@
-<p>post-input works!</p>
+@if (profile(); as profile) {
+  <app-avatar-circle
+    class="size32"
+    [avatarUrl]="profile.avatarUrl"
+  ></app-avatar-circle>
+}
+
+<textarea class="hidden-textarea"></textarea>

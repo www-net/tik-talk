@@ -1,0 +1,23 @@
+:host {
+  display: grid;
+  grid-template-columns: 32px 1fr 44px;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+
+  border: 1px solid var(--light-color);
+  background-color: var(--dark-color);
+}
+
+.hidden-textarea {
+  color: var(--light-color);
+
+  resize: none;
+  background: var(--dark-color);
+  border: none;
+
+  &:hover,
+  &:focus-visible {
+    outline: 1px solid var(--primary-color);
+  }
+}

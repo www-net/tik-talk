@@ -1,16 +1,14 @@
-import {Component, input} from '@angular/core';
-import {Profile} from '../../data/interfaces/profile.interface';
-import {ImgUrlPipe} from '../../helpers/pipes/img-url.pipe';
+import { Component, input, InputSignal } from '@angular/core';
+import { Profile } from '../../data/interfaces/profile.interface';
+import { AvatarCircleComponent } from '../avatar-circle/avatar-circle.component';
 
 @Component({
   selector: 'app-profile-header',
-  imports: [
-    ImgUrlPipe
-  ],
+  imports: [AvatarCircleComponent],
   standalone: true,
   templateUrl: './profile-header.component.html',
-  styleUrl: './profile-header.component.scss'
+  styleUrl: './profile-header.component.scss',
 })
 export class ProfileHeaderComponent {
-  profile = input<Profile>()
+  public readonly profile: InputSignal<Profile | undefined> = input<Profile>();
 }
