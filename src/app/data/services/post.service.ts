@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
-import { Post, PostCreateDto } from '../interfaces/post.interface';
+import {
+  CommentCreateDto,
+  Post,
+  PostCreateDto,
+} from '../interfaces/post.interface';
 import { Profile } from '../interfaces/profile.interface';
 import { Observable, switchMap, tap } from 'rxjs';
 
@@ -27,5 +31,9 @@ export class PostService {
         this.posts.set(res);
       }),
     );
+  }
+
+  public createComment(payload: CommentCreateDto) {
+    return this.#http.post<Comment>(`${this.#baseApiUrl}comment/`, payload);
   }
 }
