@@ -41,6 +41,8 @@ export class PostInputComponent {
         authorId: this.profile()!.id,
         communityId: 0,
       }),
-    );
+    ).then(() => {
+      this.postText = '';
+    });
   }
 }
