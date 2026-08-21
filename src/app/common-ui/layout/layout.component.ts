@@ -13,23 +13,18 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class LayoutComponent {
   // TODO  -----------
-  profileService = inject(ProfileService);
-  authService = inject(AuthService);
-
-  ngOnInit() {
-    console.log(`ngOnInit`);
-
-    this.profileService.getMe().subscribe((val) => {
-      console.log(`ngOnInit val: `, val);
-    });
-
-    console.log(`this.authService.token: `, this.authService.token);
-
-    console.log(
-      `this.authService.refreshToken: `,
-      this.authService.refreshToken,
-    );
-  }
-
+  // profileService = inject(ProfileService);
+  // authService = inject(AuthService);
+  // ngOnInit() {
+  //   console.log(`ngOnInit`);
+  //   this.profileService.getMe().subscribe((val) => {
+  //     console.log(`ngOnInit val: `, val);
+  //   });
+  //   console.log(`this.authService.token: `, this.authService.token);
+  //   console.log(
+  //     `this.authService.refreshToken: `,
+  //     this.authService.refreshToken,
+  //   );
+  // }
   // --------------
 }

@@ -1,9 +1,11 @@
 import {
   Component,
+  EventEmitter,
   HostBinding,
   inject,
   input,
   InputSignal,
+  Output,
   Renderer2,
   WritableSignal,
 } from '@angular/core';
@@ -30,6 +32,8 @@ export class PostInputComponent {
     inject(ProfileService).me;
   public readonly isCommentInput: InputSignal<boolean> = input(false);
   public readonly postId: InputSignal<number> = input(0);
+
+  @Output() created = new EventEmitter();
 
   @HostBinding('class.comment')
   get isComment() {
@@ -59,6 +63,7 @@ export class PostInputComponent {
         }),
       ).then(() => {
         this.postText = '';
+        this.created.emit();
       });
       return;
     }

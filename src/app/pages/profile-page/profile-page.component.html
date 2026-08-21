@@ -1,9 +1,6 @@
 @if (profile$ | async; as profile) {
-
   <header class="profile-page__header">
-    <app-profile-header
-      [profile]="profile"
-    ></app-profile-header>
+    <app-profile-header [profile]="profile"></app-profile-header>
 
     <a class="btn to-settings-btn" [routerLink]="['/settings']">
       Редактировать
@@ -15,14 +12,21 @@
     <app-post-feed></app-post-feed>
 
     <div>
-      <h3 class="h6 mb16">Подрисчики</h3>
+      <h3 class="h6 mb16">Подписчики</h3>
 
       <div class="subscribers-wrapper mb32">
         <ul class="subscribers-list">
           @for (subscriber of subscribers$ | async; track subscriber.id) {
             <li>
-              <a class="subscriber-links" [routerLink]="['/profile', subscriber.id]">
-                <img class="subscriber-avatar" [src]="subscriber.avatarUrl | imgUrl" alt="subscriber avatar">
+              <a
+                class="subscriber-links"
+                [routerLink]="['/profile', subscriber.id]"
+              >
+                <img
+                  class="subscriber-avatar"
+                  [src]="subscriber.avatarUrl | imgUrl"
+                  alt="subscriber avatar"
+                />
               </a>
             </li>
           }
@@ -39,10 +43,7 @@
       </ul>
 
       <h3 class="h6 mb16">О себе</h3>
-      <p class="medium-text"> {{ profile.description }} </p>
-
+      <p class="medium-text">{{ profile.description }}</p>
     </div>
-
   </main>
 }
-

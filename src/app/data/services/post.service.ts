@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import {
+  PostComment,
   CommentCreateDto,
   Post,
   PostCreateDto,
 } from '../interfaces/post.interface';
-import { Profile } from '../interfaces/profile.interface';
-import { Observable, switchMap, tap } from 'rxjs';
+import { map, Observable, switchMap, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -33,7 +33,15 @@ export class PostService {
     );
   }
 
-  public createComment(payload: CommentCreateDto) {
-    return this.#http.post<Comment>(`${this.#baseApiUrl}comment/`, payload);
+  public createComment(payload: CommentCreateDto): Observable<PostComment> {
+    return this.#http.post<PostComment>(`${this.#baseApiUrl}comment/`, payload);
+  }
+
+  public getCommentsByPostId(postId: number): Observable<PostComment[]> {
+    return this.#http.get<Post>(`${this.#baseApiUrl}post/${postId}`).pipe(
+      map((res) => {
+        return res.comments;
+      }),
+    );
   }
 }

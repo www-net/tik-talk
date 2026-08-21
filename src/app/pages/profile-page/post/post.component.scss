@@ -38,3 +38,15 @@
   font-weight: 700;
   line-height: 16px;
 }
+
+.post__comments-wrapper {
+  display: grid;
+  grid-gap: 8px;
+  max-height: 150px;
+  padding: 8px 8px 0 0;
+
+  overflow-y: auto;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color) transparent;
+}

@@ -1,11 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, input, InputSignal } from '@angular/core';
+import { PostComment } from '../../../../data/interfaces/post.interface';
+import { AvatarCircleComponent } from '../../../../common-ui/avatar-circle/avatar-circle.component';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-comment',
-  imports: [],
+  imports: [AvatarCircleComponent, DatePipe],
   templateUrl: './comment.component.html',
-  styleUrl: './comment.component.scss'
+  styleUrl: './comment.component.scss',
 })
 export class CommentComponent {
-
+  public readonly comment: InputSignal<PostComment | undefined> =
+    input<PostComment>();
 }

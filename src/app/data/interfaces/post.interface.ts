@@ -17,10 +17,10 @@ export interface Post {
   createdAt: string;
   updatedAt: string;
   likesUsers: string[];
-  comments: Comment[];
+  comments: PostComment[];
 }
 
-export interface Comment {
+export interface PostComment {
   id: number;
   text: string;
   author: {
