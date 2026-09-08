@@ -1,4 +1,9 @@
-<app-chat-workspace-header></app-chat-workspace-header>
-<app-chat-workspace-messages-wrapper></app-chat-workspace-messages-wrapper>
-
-<app-message-input></app-message-input>
+@if (activeChat$ | async; as chat) {
+  @if (chat.companion) {
+    <app-chat-workspace-header
+      [profile]="chat.companion"
+    ></app-chat-workspace-header>
+  }
+  <app-chat-workspace-messages-wrapper></app-chat-workspace-messages-wrapper>
+  <app-message-input></app-message-input>
+}

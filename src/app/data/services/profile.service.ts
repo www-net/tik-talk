@@ -1,4 +1,4 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Profile } from '../interfaces/profile.interface';
 import { Pageble } from '../interfaces/pageble.interface';
@@ -8,38 +8,41 @@ import { map, Observable, tap } from 'rxjs';
   providedIn: 'root',
 })
 export class ProfileService {
-  http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
+  // TODO - вынести в отдельный файл baseApiUrl
+  private readonly baseApiUrl: string = 'https://icherniakov.ru/yt-course/';
 
-  baseApiUrl: string = 'https://icherniakov.ru/yt-course/';
+  public readonly filteredProfiles: WritableSignal<Profile[]> = signal<
+    Profile[]
+  >([]);
 
-  me = signal<Profile | null>(null);
-  filteredProfiles = signal<Profile[]>([]);
+  public readonly me = signal<Profile | null>(null);
 
-  getTestAccounts() {
+  public getTestAccounts(): Observable<Profile[]> {
     return this.http.get<Profile[]>(`${this.baseApiUrl}account/test_accounts`);
   }
 
-  getMe(): Observable<Profile> {
+  public getMe(): Observable<Profile> {
     return this.http
       .get<Profile>(`${this.baseApiUrl}account/me`)
       .pipe(tap((res) => this.me.set(res)));
   }
 
-  getAccount(id: string) {
+  public getAccount(id: string): Observable<Profile> {
     return this.http.get<Profile>(`${this.baseApiUrl}account/${id}`);
   }
 
-  getSubscribersShortList(subsAmount = 3) {
+  public getSubscribersShortList(subsAmount = 3): Observable<Profile[]> {
     return this.http
       .get<Pageble<Profile>>(`${this.baseApiUrl}account/subscribers/`)
       .pipe(map((res) => res.items.slice(0, subsAmount)));
   }
 
-  patchProfile(profile: Partial<Profile>) {
+  public patchProfile(profile: Partial<Profile>): Observable<Profile> {
     return this.http.patch<Profile>(`${this.baseApiUrl}account/me`, profile);
   }
 
-  uploadAvatar(file: File) {
+  public uploadAvatar(file: File): Observable<Profile> {
     const fd = new FormData();
     fd.append(`image`, file);
 
@@ -49,7 +52,9 @@ export class ProfileService {
     );
   }
 
-  filterProfiles(params: Record<string, any>) {
+  public filterProfiles(
+    params: Record<string, any>,
+  ): Observable<Pageble<Profile>> {
     return this.http
       .get<Pageble<Profile>>(`${this.baseApiUrl}account/accounts`, {
         params,

@@ -1,13 +1,17 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { inject, Injectable, WritableSignal } from '@angular/core';
+import { map, Observable } from 'rxjs';
 import { Chat, LastMessageRes, Message } from '../interfaces/chats.interface';
+import { ProfileService } from './profile.service';
+import { Profile } from '../interfaces/profile.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChatsService {
   private readonly http: HttpClient = inject(HttpClient);
+  private readonly me: WritableSignal<Profile | null> =
+    inject(ProfileService).me;
 
   // TODO - вынести baseApiUrl - в отдельный файл
   private readonly baseApiUrl: string = 'https://icherniakov.ru/yt-course/';
@@ -23,7 +27,17 @@ export class ChatsService {
   }
 
   public getChatById(chatId: number): Observable<Chat> {
-    return this.http.get<Chat>(`${this.chatsUrl}${chatId}`);
+    return this.http.get<Chat>(`${this.chatsUrl}${chatId}`).pipe(
+      map((chat) => {
+        return {
+          ...chat,
+          companion:
+            chat.userFirst.id === this.me()?.id
+              ? chat.userSecond
+              : chat.userFirst,
+        };
+      }),
+    );
   }
 
   public sendMessage(chatId: number, message: string): Observable<Message> {
