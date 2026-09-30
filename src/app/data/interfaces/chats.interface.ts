@@ -16,10 +16,12 @@ export interface Message {
   createdAt: string;
   isRead: boolean;
   updatedAt: string;
+  user?: Profile;
+  isMine?: boolean;
 }
 
 export interface LastMessageRes {
   id: number;
   userFrom: Profile;
-  message: string;
+  message: string | null;
 }

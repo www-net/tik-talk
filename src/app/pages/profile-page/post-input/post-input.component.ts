@@ -25,22 +25,22 @@ import { firstValueFrom } from 'rxjs';
   styleUrl: './post-input.component.scss',
 })
 export class PostInputComponent {
-  public readonly r2: Renderer2 = inject(Renderer2);
-  public readonly postService: PostService = inject(PostService);
+  private readonly r2: Renderer2 = inject(Renderer2);
+  private readonly postService: PostService = inject(PostService);
 
   public readonly profile: WritableSignal<Profile | null> =
     inject(ProfileService).me;
   public readonly isCommentInput: InputSignal<boolean> = input(false);
   public readonly postId: InputSignal<number> = input(0);
 
-  @Output() created = new EventEmitter();
+  @Output() public readonly created: EventEmitter<void> = new EventEmitter();
 
   @HostBinding('class.comment')
-  get isComment() {
+  public get isComment(): boolean {
     return this.isCommentInput();
   }
 
-  public postText = '';
+  public postText: string = '';
 
   public onTextAreaInput(event: Event): void {
     const textarea: HTMLTextAreaElement = event.target as HTMLTextAreaElement;

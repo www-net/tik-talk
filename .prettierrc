@@ -1,6 +1,15 @@
 {
+  "printWidth": 80,
   "plugins": [
     "prettier-plugin-angular"
   ],
-  "htmlWhitespaceSensitivity": "css"
+  "htmlWhitespaceSensitivity": "css",
+  "overrides": [
+    {
+      "files": "*.ts",
+      "options": {
+        "printWidth": 100
+      }
+    }
+  ]
 }
