@@ -4,6 +4,7 @@ import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
 import { TokenResponse } from './auth.interface';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environments';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,8 @@ export class AuthService {
   http = inject(HttpClient);
   router = inject(Router);
   cookieService = inject(CookieService);
-  baseApiUrl: string = 'https://icherniakov.ru/yt-course/auth/';
+  // TODO - убрать апи
+  // baseApiUrl: string = 'https://icherniakov.ru/yt-course/auth/';
 
   token: string | null = null;
   refreshToken: string | null = null;
@@ -34,20 +36,20 @@ export class AuthService {
 
     // TODO - Костыль. Так как сервер лёг
     /////////////
-    return of({
-      access_token: 'access_token',
-      refresh_token: 'refresh_token',
-    }).pipe(tap((val) => this.saveTokens(val)));
+    // return of({
+    //   access_token: 'access_token',
+    //   refresh_token: 'refresh_token',
+    // }).pipe(tap((val) => this.saveTokens(val)));
     ////////////
     // TODO. Это временно заменил на принудительный вход
-    // return this.http
-    //   .post<TokenResponse>(`${this.baseApiUrl}token`, fd)
-    //   .pipe(tap((val) => this.saveTokens(val)));
+    return this.http
+      .post<TokenResponse>(`${environment.AUTH_API_URL}token`, fd)
+      .pipe(tap((val) => this.saveTokens(val)));
   }
 
   refreshAuthToken() {
     return this.http
-      .post<TokenResponse>(`${this.baseApiUrl}refresh`, {
+      .post<TokenResponse>(`${environment.AUTH_API_URL}refresh`, {
         refresh_token: this.refreshToken,
       })
       .pipe(

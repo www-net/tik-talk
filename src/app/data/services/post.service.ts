@@ -1,19 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
-import {
-  PostComment,
-  CommentCreateDto,
-  Post,
-  PostCreateDto,
-} from '../interfaces/post.interface';
+import { PostComment, CommentCreateDto, Post, PostCreateDto } from '../interfaces/post.interface';
 import { map, Observable, switchMap, tap } from 'rxjs';
+import { environment } from '../../../environments/environments';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PostService {
   readonly #http: HttpClient = inject(HttpClient);
-  readonly #baseApiUrl: string = 'https://icherniakov.ru/yt-course/';
+  // TODO
+  readonly #baseApiUrl: string = environment.BASE_API_URL;
 
   public readonly posts: WritableSignal<Post[]> = signal<Post[]>([]);
 

@@ -4,6 +4,7 @@ import { map, Observable } from 'rxjs';
 import { Chat, LastMessageRes, Message } from '../interfaces/chats.interface';
 import { ProfileService } from './profile.service';
 import { Profile } from '../interfaces/profile.interface';
+import { environment } from '../../../environments/environments';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,8 @@ export class ChatsService {
   private readonly me: WritableSignal<Profile | null> = inject(ProfileService).me;
 
   // TODO - вынести baseApiUrl - в отдельный файл
-  private readonly baseApiUrl: string = 'https://icherniakov.ru/yt-course/';
+  private readonly baseApiUrl: string = environment.BASE_API_URL;
+
   private readonly chatsUrl: string = `${this.baseApiUrl}chat/`;
   private readonly messageUrl: string = `${this.baseApiUrl}message/`;
 
