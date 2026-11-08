@@ -25,6 +25,11 @@
         "assets": [
           {
             "glob": "**/*",
+            "input": "apps/tik-talk/src/assets",
+            "output": "assets"
+          },
+          {
+            "glob": "**/*",
             "input": "apps/tik-talk/public"
           }
         ],
@@ -91,6 +96,11 @@
         "tsConfig": "apps/tik-talk/tsconfig.spec.json",
         "inlineStyleLanguage": "scss",
         "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/tik-talk/src/assets",
+            "output": "assets"
+          },
           {
             "glob": "**/*",
             "input": "apps/tik-talk/public"
