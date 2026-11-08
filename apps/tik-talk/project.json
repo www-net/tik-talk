@@ -35,6 +35,12 @@
       },
       "configurations": {
         "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/tik-talk/src/environments/environments.ts",
+              "with": "apps/tik-talk/src/environments/environment.prod.ts"
+            }
+          ],
           "budgets": [
             {
               "type": "initial",
