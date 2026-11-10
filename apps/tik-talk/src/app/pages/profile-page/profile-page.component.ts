@@ -3,7 +3,7 @@ import { ProfileHeaderComponent } from '../../common-ui/profile-header/profile-h
 import { ProfileService } from '../../data/services/profile.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { toObservable } from '@angular/core/rxjs-interop';
-import { firstValueFrom, Observable, switchMap } from 'rxjs';
+import { firstValueFrom, Observable, switchMap, tap } from 'rxjs';
 import { AsyncPipe, JsonPipe, NgForOf } from '@angular/common';
 import { SvgIconComponent } from '../../common-ui/svg-icon/svg-icon.component';
 import { Profile } from '../../data/interfaces/profile.interface';
@@ -30,9 +30,7 @@ export class ProfilePageComponent {
   private readonly router: Router = inject(Router);
   private readonly profileService: ProfileService = inject(ProfileService);
   private readonly chatsService: ChatsService = inject(ChatsService);
-  private readonly me$: Observable<Profile | null> = toObservable(
-    this.profileService.me,
-  );
+  private readonly me$: Observable<Profile | null> = toObservable(this.profileService.me);
 
   public readonly subscribers$: Observable<Profile[]> =
     this.profileService.getSubscribersShortList(5);

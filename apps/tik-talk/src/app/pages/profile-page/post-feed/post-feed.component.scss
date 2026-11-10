@@ -1,5 +1,7 @@
 :host {
   display: grid;
+  grid-auto-rows: min-content;
+  align-content: start;
   grid-gap: 16px;
   padding-right: 6px;
 

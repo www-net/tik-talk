@@ -28,8 +28,7 @@ export class PostInputComponent {
   private readonly r2: Renderer2 = inject(Renderer2);
   private readonly postService: PostService = inject(PostService);
 
-  public readonly profile: WritableSignal<Profile | null> =
-    inject(ProfileService).me;
+  public readonly profile: WritableSignal<Profile | null> = inject(ProfileService).me;
   public readonly isCommentInput: InputSignal<boolean> = input(false);
   public readonly postId: InputSignal<number> = input(0);
 

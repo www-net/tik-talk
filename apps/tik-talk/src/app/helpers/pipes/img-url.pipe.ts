@@ -7,9 +7,7 @@ import { environment } from '../../../environments/environments';
 })
 export class ImgUrlPipe implements PipeTransform {
   transform(value: string | null): string | null {
-    if (!value) return null;
-    // TODO
-    // return `https://icherniakov.ru/yt-course/${value}`;
+    if (!value) return 'assets/images/avatar-placeholder.svg';
     return `${environment.BASE_API_URL}${value}`;
   }
 }
